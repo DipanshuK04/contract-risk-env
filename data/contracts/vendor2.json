@@ -1,0 +1,29 @@
+{
+  "contract_id": "vendor_002",
+  "contract_type": "VENDOR_AGREEMENT",
+  "party_a": "RetailGiant Corp.",
+  "party_b": "ShipFast Logistics",
+  "clauses": {
+    "liability_cap": true,
+    "ip_ownership": true,
+    "termination": true,
+    "confidentiality": true,
+    "dispute_resolution": true,
+    "sla_uptime": true,
+    "indemnification": true,
+    "data_privacy": false,
+    "payment_terms": true,
+    "audit_rights": false
+  },
+  "values": {
+    "liability_cap_usd": 10000,
+    "termination_notice_days": 14,
+    "payment_due_days": 30,
+    "sla_uptime_percent": 90.0,
+    "penalty_per_day_usd": 50
+  },
+  "ground_truth": {
+    "missing_clauses": ["data_privacy", "audit_rights"],
+    "risky_values": ["sla_uptime_percent"]
+  }
+}

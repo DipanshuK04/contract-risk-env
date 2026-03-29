@@ -1,0 +1,69 @@
+{
+  "contract_id": "conflict_001",
+  "contract_type": "CONFLICT_DETECTION",
+  "description": "Two vendor agreements for the same project — find the contradictions",
+  "contract_a": {
+    "contract_id": "conflict_001_a",
+    "party": "AlphaVentures Corp.",
+    "clauses": {
+      "liability_cap": true,
+      "ip_ownership": true,
+      "termination": true,
+      "confidentiality": true,
+      "dispute_resolution": true,
+      "governing_law": "NY"
+    },
+    "values": {
+      "liability_cap_usd": 1000000,
+      "termination_notice_days": 30,
+      "confidentiality_years": 5,
+      "payment_due_days": 30
+    }
+  },
+  "contract_b": {
+    "contract_id": "conflict_001_b",
+    "party": "BetaServices LLC",
+    "clauses": {
+      "liability_cap": false,
+      "ip_ownership": true,
+      "termination": true,
+      "confidentiality": true,
+      "dispute_resolution": true,
+      "governing_law": "CA"
+    },
+    "values": {
+      "liability_cap_usd": null,
+      "termination_notice_days": 30,
+      "confidentiality_years": 2,
+      "payment_due_days": 60
+    }
+  },
+  "ground_truth": {
+    "conflicts": [
+      {
+        "field": "liability_cap",
+        "a_value": "1000000 USD",
+        "b_value": "unlimited (clause missing)",
+        "severity": "high"
+      },
+      {
+        "field": "governing_law",
+        "a_value": "NY",
+        "b_value": "CA",
+        "severity": "high"
+      },
+      {
+        "field": "confidentiality_years",
+        "a_value": 5,
+        "b_value": 2,
+        "severity": "medium"
+      },
+      {
+        "field": "payment_due_days",
+        "a_value": 30,
+        "b_value": 60,
+        "severity": "medium"
+      }
+    ]
+  }
+}

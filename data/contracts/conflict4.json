@@ -1,0 +1,79 @@
+{
+  "contract_id": "conflict_004",
+  "contract_type": "CONFLICT_DETECTION",
+  "description": "Partnership agreement vs services contract for the same engagement — many conflicts",
+  "contract_a": {
+    "contract_id": "conflict_004_a",
+    "party": "ZenithGroup Corp.",
+    "clauses": {
+      "liability_cap": true,
+      "ip_ownership": true,
+      "termination": true,
+      "confidentiality": true,
+      "dispute_resolution": true,
+      "indemnification": true,
+      "non_compete": false
+    },
+    "values": {
+      "liability_cap_usd": 50000,
+      "termination_notice_days": 30,
+      "confidentiality_years": 4,
+      "payment_due_days": 15,
+      "governing_law": "WA"
+    }
+  },
+  "contract_b": {
+    "contract_id": "conflict_004_b",
+    "party": "ZenithGroup Corp.",
+    "clauses": {
+      "liability_cap": true,
+      "ip_ownership": false,
+      "termination": true,
+      "confidentiality": true,
+      "dispute_resolution": false,
+      "indemnification": true,
+      "non_compete": true
+    },
+    "values": {
+      "liability_cap_usd": 50000,
+      "termination_notice_days": 7,
+      "confidentiality_years": 4,
+      "payment_due_days": 60,
+      "governing_law": "WA"
+    }
+  },
+  "ground_truth": {
+    "conflicts": [
+      {
+        "field": "ip_ownership",
+        "a_value": "present",
+        "b_value": "missing",
+        "severity": "high"
+      },
+      {
+        "field": "dispute_resolution",
+        "a_value": "present",
+        "b_value": "missing",
+        "severity": "high"
+      },
+      {
+        "field": "non_compete",
+        "a_value": "missing",
+        "b_value": "present",
+        "severity": "medium"
+      },
+      {
+        "field": "termination_notice_days",
+        "a_value": 30,
+        "b_value": 7,
+        "severity": "high"
+      },
+      {
+        "field": "payment_due_days",
+        "a_value": 15,
+        "b_value": 60,
+        "severity": "medium"
+      }
+    ]
+  }
+}

@@ -1,0 +1,22 @@
+{
+  "contract_id": "nda_004",
+  "contract_type": "NDA",
+  "party_a": "BlueSky Ventures",
+  "party_b": "Pinnacle Analytics",
+  "clauses": {
+    "liability_cap": true,
+    "ip_ownership": true,
+    "termination": true,
+    "confidentiality": true,
+    "dispute_resolution": true
+  },
+  "values": {
+    "liability_cap_usd": 50000,
+    "termination_notice_days": 30,
+    "confidentiality_years": 3
+  },
+  "ground_truth": {
+    "missing_clauses": [],
+    "risky_values": []
+  }
+}

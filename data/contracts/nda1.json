@@ -1,0 +1,22 @@
+{
+  "contract_id": "nda_001",
+  "contract_type": "NDA",
+  "party_a": "TechCorp Inc.",
+  "party_b": "StartupXYZ Ltd.",
+  "clauses": {
+    "liability_cap": true,
+    "ip_ownership": false,
+    "termination": true,
+    "confidentiality": true,
+    "dispute_resolution": false
+  },
+  "values": {
+    "liability_cap_usd": 500,
+    "termination_notice_days": 1,
+    "confidentiality_years": 2
+  },
+  "ground_truth": {
+    "missing_clauses": ["ip_ownership", "dispute_resolution"],
+    "risky_values": ["liability_cap_usd", "termination_notice_days"]
+  }
+}

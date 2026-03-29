@@ -1,0 +1,29 @@
+{
+  "contract_id": "vendor_004",
+  "contract_type": "VENDOR_AGREEMENT",
+  "party_a": "QuickBuild Startup",
+  "party_b": "CheapHost LLC",
+  "clauses": {
+    "liability_cap": true,
+    "ip_ownership": false,
+    "termination": true,
+    "confidentiality": false,
+    "dispute_resolution": false,
+    "sla_uptime": true,
+    "indemnification": false,
+    "data_privacy": false,
+    "payment_terms": true,
+    "audit_rights": true
+  },
+  "values": {
+    "liability_cap_usd": 100,
+    "termination_notice_days": 1,
+    "payment_due_days": 120,
+    "sla_uptime_percent": 85.0,
+    "penalty_per_day_usd": 5
+  },
+  "ground_truth": {
+    "missing_clauses": ["ip_ownership", "confidentiality", "dispute_resolution", "indemnification", "data_privacy"],
+    "risky_values": ["liability_cap_usd", "termination_notice_days", "payment_due_days", "sla_uptime_percent"]
+  }
+}

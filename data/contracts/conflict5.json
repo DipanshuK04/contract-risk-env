@@ -1,0 +1,46 @@
+{
+  "contract_id": "conflict_005",
+  "contract_type": "CONFLICT_DETECTION",
+  "description": "Two perfectly aligned contracts — the agent must correctly find zero conflicts",
+  "contract_a": {
+    "contract_id": "conflict_005_a",
+    "party": "Harmony Software Ltd.",
+    "clauses": {
+      "liability_cap": true,
+      "ip_ownership": true,
+      "termination": true,
+      "confidentiality": true,
+      "dispute_resolution": true,
+      "data_privacy": true
+    },
+    "values": {
+      "liability_cap_usd": 100000,
+      "termination_notice_days": 30,
+      "confidentiality_years": 3,
+      "payment_due_days": 30,
+      "governing_law": "NY"
+    }
+  },
+  "contract_b": {
+    "contract_id": "conflict_005_b",
+    "party": "Harmony Software Ltd.",
+    "clauses": {
+      "liability_cap": true,
+      "ip_ownership": true,
+      "termination": true,
+      "confidentiality": true,
+      "dispute_resolution": true,
+      "data_privacy": true
+    },
+    "values": {
+      "liability_cap_usd": 100000,
+      "termination_notice_days": 30,
+      "confidentiality_years": 3,
+      "payment_due_days": 30,
+      "governing_law": "NY"
+    }
+  },
+  "ground_truth": {
+    "conflicts": []
+  }
+}
