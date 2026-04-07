@@ -1,9 +1,9 @@
 {
-  "contract_id": "conflict_002",
+  "contract_id": "conflict2",
   "contract_type": "CONFLICT_DETECTION",
   "description": "Two NDAs signed by the same parties at different times — contradictions must be found",
   "contract_a": {
-    "contract_id": "conflict_002_a",
+    "contract_id": "conflict2_a",
     "party": "NovaTech Industries",
     "clauses": {
       "liability_cap": true,
@@ -22,7 +22,7 @@
     }
   },
   "contract_b": {
-    "contract_id": "conflict_002_b",
+    "contract_id": "conflict2_b",
     "party": "NovaTech Industries",
     "clauses": {
       "liability_cap": true,

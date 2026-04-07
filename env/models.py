@@ -4,8 +4,8 @@ from typing import Dict, List, Optional, Literal
 class Contract_Observation(BaseModel):
     contract_id:str
     contract_type: str
-    clauses:Dict[str,bool] = Field(description='Dictionary of main observations fields in bool')
-    values:Dict[str,float] = Field(description='Dictionary of other main observations fields in floats')
+    clauses:dict = Field(description='Dictionary of main observations fields in bool')
+    values:dict = Field(description='Dictionary of other main observations fields in floats')
     step_number: int
     actions_taken: List[dict]   
     remaining_budget: int  = Field(description='Remaing steps ')
@@ -23,12 +23,12 @@ class Contract_Reward(BaseModel):
     score: float    
     feedback: str = Field(description='Why this reward')
 
-# class ContractState(BaseModel):
-#     episode_id: str
-#     step_count: int
-#     task_id: str
-#     contract_id: str
-#     flags_made: List[str]  = Field(description='which clauses flagged so far')
-#     approvals_made: List[str]
-#     total_reward: float
-#     done: bool 
+class ContractState(BaseModel):
+    episode_id: str
+    step_count: int
+    task_id: str
+    contract_id: str
+    actions_taken: List[str]  = Field(description='Actiosn taken so far')
+    total_reward: float
+    done: bool 
+    

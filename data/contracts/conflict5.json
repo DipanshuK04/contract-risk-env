@@ -1,9 +1,9 @@
 {
-  "contract_id": "conflict_005",
+  "contract_id": "conflict5",
   "contract_type": "CONFLICT_DETECTION",
   "description": "Two perfectly aligned contracts — the agent must correctly find zero conflicts",
   "contract_a": {
-    "contract_id": "conflict_005_a",
+    "contract_id": "conflict5_a",
     "party": "Harmony Software Ltd.",
     "clauses": {
       "liability_cap": true,
@@ -22,7 +22,7 @@
     }
   },
   "contract_b": {
-    "contract_id": "conflict_005_b",
+    "contract_id": "conflict5_b",
     "party": "Harmony Software Ltd.",
     "clauses": {
       "liability_cap": true,

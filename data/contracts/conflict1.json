@@ -1,9 +1,9 @@
 {
-  "contract_id": "conflict_001",
+  "contract_id": "conflict1",
   "contract_type": "CONFLICT_DETECTION",
   "description": "Two vendor agreements for the same project — find the contradictions",
   "contract_a": {
-    "contract_id": "conflict_001_a",
+    "contract_id": "conflict1_a",
     "party": "AlphaVentures Corp.",
     "clauses": {
       "liability_cap": true,
@@ -21,7 +21,7 @@
     }
   },
   "contract_b": {
-    "contract_id": "conflict_001_b",
+    "contract_id": "conflict1_b",
     "party": "BetaServices LLC",
     "clauses": {
       "liability_cap": false,

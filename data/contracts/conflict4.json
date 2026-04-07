@@ -1,9 +1,9 @@
 {
-  "contract_id": "conflict_004",
+  "contract_id": "conflict4",
   "contract_type": "CONFLICT_DETECTION",
   "description": "Partnership agreement vs services contract for the same engagement — many conflicts",
   "contract_a": {
-    "contract_id": "conflict_004_a",
+    "contract_id": "conflict4_a",
     "party": "ZenithGroup Corp.",
     "clauses": {
       "liability_cap": true,
@@ -23,7 +23,7 @@
     }
   },
   "contract_b": {
-    "contract_id": "conflict_004_b",
+    "contract_id": "conflict4_b",
     "party": "ZenithGroup Corp.",
     "clauses": {
       "liability_cap": true,

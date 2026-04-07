@@ -1,9 +1,9 @@
 {
-  "contract_id": "conflict_003",
+  "contract_id": "conflict3",
   "contract_type": "CONFLICT_DETECTION",
   "description": "Vendor contract vs its renewal — subtle conflicts hidden in the values",
   "contract_a": {
-    "contract_id": "conflict_003_a",
+    "contract_id": "conflict3_a",
     "party": "PrimeCloud Services",
     "clauses": {
       "liability_cap": true,
@@ -24,7 +24,7 @@
     }
   },
   "contract_b": {
-    "contract_id": "conflict_003_b",
+    "contract_id": "conflict3_b",
     "party": "PrimeCloud Services",
     "clauses": {
       "liability_cap": true,
