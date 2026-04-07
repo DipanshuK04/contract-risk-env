@@ -1,0 +1,21 @@
+{
+  "contract_id": "nda5",
+  "contract_type": "NDA",
+  "party_a": "Omega Partners",
+  "party_b": "Delta Consulting",
+  "clauses": {
+    "liability_cap": false,
+    "ip_ownership": false,
+    "termination": true,
+    "confidentiality": true,
+    "dispute_resolution": false
+  },
+  "values": {
+    "termination_notice_days": 1,
+    "confidentiality_years": 1
+  },
+  "ground_truth": {
+    "missing_clauses": ["liability_cap", "ip_ownership", "dispute_resolution"],
+    "risky_values": ["termination_notice_days", "confidentiality_years"]
+  }
+}

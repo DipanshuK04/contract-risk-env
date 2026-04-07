@@ -1,0 +1,22 @@
+{
+  "contract_id": "nda3",
+  "contract_type": "NDA",
+  "party_a": "Globex Corporation",
+  "party_b": "Initech Solutions",
+  "clauses": {
+    "liability_cap": true,
+    "ip_ownership": true,
+    "termination": true,
+    "confidentiality": true,
+    "dispute_resolution": true
+  },
+  "values": {
+    "liability_cap_usd": 250,
+    "termination_notice_days": 30,
+    "confidentiality_years": 5
+  },
+  "ground_truth": {
+    "missing_clauses": [],
+    "risky_values": ["liability_cap_usd"]
+  }
+}

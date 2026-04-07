@@ -1,0 +1,95 @@
+name: contract-risk-env
+type: environment
+runtime: docker
+
+description: >
+  A real-world OpenEnv environment for AI contract risk analysis.
+  An agent reads structured contract data and must detect missing clauses,
+  flag risky values and identify conflicts between two contracts.
+  Simulates tasks that legal and compliance teams perform daily.
+
+app: api.app:app
+port: 7860
+
+tags:
+  - openenv
+  - contract-analysis
+  - legal
+  - risk-detection
+  - nlp
+
+tasks:
+  - name: easy
+    description: Detect missing clauses in a simple NDA contract
+    difficulty: easy
+    max_steps: 10
+
+  - name: medium
+    description: Flag missing clauses AND risky values in a vendor agreement
+    difficulty: medium
+    max_steps: 20
+
+  - name: hard
+    description: Detect conflicting fields between two contracts side by side
+    difficulty: hard
+    max_steps: 30
+
+observation_space:
+  contract_id: string
+  contract_type: string
+  clauses: dict
+  values: dict
+  step_number: int
+  actions_taken: list
+  remaining_budget: int
+  done: bool
+  reward: float
+
+action_space:
+  action_type:
+    type: string
+    enum: [flag_missing, flag_risky, approve, submit_report]
+  target_clause:
+    type: string
+  severity:
+    type: string
+    enum: [low, medium, high]
+    optional: true
+  reason:
+    type: string
+
+reward:
+  correct_flag: 1.0
+  correct_approve: 0.5
+  wrong_flag: -0.3
+  repeat_action: -0.2
+  missed_clause: -0.5
+
+endpoints:
+  health:
+    method: GET
+    path: /health
+
+  reset:
+    method: POST
+    path: /reset
+
+  step:
+    method: POST
+    path: /step
+
+  state:
+    method: GET
+    path: /state
+
+  tasks:
+    method: GET
+    path: /tasks
+
+  grade:
+    method: POST
+    path: /grade
+    
+  close:
+    method: POST
+    path: /close

@@ -1,0 +1,65 @@
+{
+  "contract_id": "conflict2",
+  "contract_type": "CONFLICT_DETECTION",
+  "description": "Two NDAs signed by the same parties at different times — contradictions must be found",
+  "contract_a": {
+    "contract_id": "conflict2_a",
+    "party": "NovaTech Industries",
+    "clauses": {
+      "liability_cap": true,
+      "ip_ownership": true,
+      "termination": true,
+      "confidentiality": true,
+      "dispute_resolution": true,
+      "non_compete": true
+    },
+    "values": {
+      "liability_cap_usd": 200000,
+      "termination_notice_days": 90,
+      "confidentiality_years": 3,
+      "non_compete_years": 2,
+      "governing_law": "TX"
+    }
+  },
+  "contract_b": {
+    "contract_id": "conflict2_b",
+    "party": "NovaTech Industries",
+    "clauses": {
+      "liability_cap": true,
+      "ip_ownership": false,
+      "termination": true,
+      "confidentiality": true,
+      "dispute_resolution": true,
+      "non_compete": true
+    },
+    "values": {
+      "liability_cap_usd": 200000,
+      "termination_notice_days": 14,
+      "confidentiality_years": 3,
+      "non_compete_years": 1,
+      "governing_law": "TX"
+    }
+  },
+  "ground_truth": {
+    "conflicts": [
+      {
+        "field": "ip_ownership",
+        "a_value": "present",
+        "b_value": "missing",
+        "severity": "high"
+      },
+      {
+        "field": "termination_notice_days",
+        "a_value": 90,
+        "b_value": 14,
+        "severity": "high"
+      },
+      {
+        "field": "non_compete_years",
+        "a_value": 2,
+        "b_value": 1,
+        "severity": "medium"
+      }
+    ]
+  }
+}

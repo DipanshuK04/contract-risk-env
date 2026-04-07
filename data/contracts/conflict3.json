@@ -1,0 +1,75 @@
+{
+  "contract_id": "conflict3",
+  "contract_type": "CONFLICT_DETECTION",
+  "description": "Vendor contract vs its renewal — subtle conflicts hidden in the values",
+  "contract_a": {
+    "contract_id": "conflict3_a",
+    "party": "PrimeCloud Services",
+    "clauses": {
+      "liability_cap": true,
+      "ip_ownership": true,
+      "termination": true,
+      "confidentiality": true,
+      "dispute_resolution": true,
+      "sla_uptime": true,
+      "data_privacy": true
+    },
+    "values": {
+      "liability_cap_usd": 750000,
+      "termination_notice_days": 60,
+      "sla_uptime_percent": 99.9,
+      "penalty_per_day_usd": 500,
+      "payment_due_days": 30,
+      "governing_law": "DE"
+    }
+  },
+  "contract_b": {
+    "contract_id": "conflict3_b",
+    "party": "PrimeCloud Services",
+    "clauses": {
+      "liability_cap": true,
+      "ip_ownership": true,
+      "termination": true,
+      "confidentiality": true,
+      "dispute_resolution": true,
+      "sla_uptime": true,
+      "data_privacy": true
+    },
+    "values": {
+      "liability_cap_usd": 750000,
+      "termination_notice_days": 60,
+      "sla_uptime_percent": 95.0,
+      "penalty_per_day_usd": 100,
+      "payment_due_days": 45,
+      "governing_law": "NY"
+    }
+  },
+  "ground_truth": {
+    "conflicts": [
+      {
+        "field": "sla_uptime_percent",
+        "a_value": 99.9,
+        "b_value": 95.0,
+        "severity": "high"
+      },
+      {
+        "field": "governing_law",
+        "a_value": "DE",
+        "b_value": "NY",
+        "severity": "high"
+      },
+      {
+        "field": "penalty_per_day_usd",
+        "a_value": 500,
+        "b_value": 100,
+        "severity": "medium"
+      },
+      {
+        "field": "payment_due_days",
+        "a_value": 30,
+        "b_value": 45,
+        "severity": "low"
+      }
+    ]
+  }
+}

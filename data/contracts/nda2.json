@@ -1,0 +1,22 @@
+{
+  "contract_id": "nda2",
+  "contract_type": "NDA",
+  "party_a": "Apex Systems",
+  "party_b": "FreelancerPro",
+  "clauses": {
+    "liability_cap": true,
+    "ip_ownership": true,
+    "termination": false,
+    "confidentiality": true,
+    "non_compete": false
+  },
+  "values": {
+    "liability_cap_usd": 5000,
+    "confidentiality_years": 1,
+    "governing_law_state": "CA"
+  },
+  "ground_truth": {
+    "missing_clauses": ["termination", "non_compete"],
+    "risky_values": ["confidentiality_years"]
+  }
+}

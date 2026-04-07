@@ -1,0 +1,29 @@
+{
+  "contract_id": "vendor3",
+  "contract_type": "VENDOR_AGREEMENT",
+  "party_a": "HealthNet Systems",
+  "party_b": "DataGuard Solutions",
+  "clauses": {
+    "liability_cap": true,
+    "ip_ownership": true,
+    "termination": true,
+    "confidentiality": true,
+    "dispute_resolution": true,
+    "sla_uptime": true,
+    "indemnification": true,
+    "data_privacy": true,
+    "payment_terms": true,
+    "audit_rights": true
+  },
+  "values": {
+    "liability_cap_usd": 500000,
+    "termination_notice_days": 30,
+    "payment_due_days": 30,
+    "sla_uptime_percent": 99.9,
+    "penalty_per_day_usd": 1000
+  },
+  "ground_truth": {
+    "missing_clauses": [],
+    "risky_values": []
+  }
+}

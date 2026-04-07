@@ -1,0 +1,29 @@
+{
+  "contract_id": "vendor5",
+  "contract_type": "VENDOR_AGREEMENT",
+  "party_a": "Finserv Partners",
+  "party_b": "TechOps Group",
+  "clauses": {
+    "liability_cap": true,
+    "ip_ownership": true,
+    "termination": true,
+    "confidentiality": true,
+    "dispute_resolution": true,
+    "sla_uptime": true,
+    "indemnification": true,
+    "data_privacy": true,
+    "payment_terms": true,
+    "audit_rights": false
+  },
+  "values": {
+    "liability_cap_usd": 25000,
+    "termination_notice_days": 30,
+    "payment_due_days": 45,
+    "sla_uptime_percent": 99.0,
+    "penalty_per_day_usd": 10
+  },
+  "ground_truth": {
+    "missing_clauses": ["audit_rights"],
+    "risky_values": ["penalty_per_day_usd"]
+  }
+}

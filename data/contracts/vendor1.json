@@ -1,0 +1,29 @@
+{
+  "contract_id": "vendor1",
+  "contract_type": "VENDOR_AGREEMENT",
+  "party_a": "MegaCorp Ltd.",
+  "party_b": "CloudServe Inc.",
+  "clauses": {
+    "liability_cap": true,
+    "ip_ownership": true,
+    "termination": true,
+    "confidentiality": true,
+    "dispute_resolution": true,
+    "sla_uptime": false,
+    "indemnification": false,
+    "data_privacy": false,
+    "payment_terms": true,
+    "audit_rights": true
+  },
+  "values": {
+    "liability_cap_usd": 1000,
+    "termination_notice_days": 3,
+    "payment_due_days": 90,
+    "sla_uptime_percent": null,
+    "penalty_per_day_usd": null
+  },
+  "ground_truth": {
+    "missing_clauses": ["sla_uptime", "indemnification", "data_privacy"],
+    "risky_values": ["liability_cap_usd", "termination_notice_days", "payment_due_days"]
+  }
+}
