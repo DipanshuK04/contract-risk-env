@@ -8,6 +8,9 @@ description: >
   flag risky values and identify conflicts between two contracts.
   Simulates tasks that legal and compliance teams perform daily.
 
+entrypoint:
+  api: https://iamDipanshuK04-contract-risk-env.hf.space
+  
 app: api.app:app
 port: 7860
 

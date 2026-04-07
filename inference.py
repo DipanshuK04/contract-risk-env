@@ -15,7 +15,7 @@ if not API_KEY:
     raise ValueError("HF_TOKEN or API_KEY not set,please set when running docker file")
 
 HF_TOKEN     = os.getenv("HF_TOKEN",     "")
-ENV_URL      = os.getenv("ENV_URL",      "http://localhost:7860")
+ENV_URL      = os.getenv("ENV_URL",      "https://iamDipanshuK04-contract-risk-env.hf.space")
 
 BENCHMARK  = os.getenv("CONTRACT_RISK_BENCHMARK") or "contract-risk-env"
 MAX_STEPS  = 25
