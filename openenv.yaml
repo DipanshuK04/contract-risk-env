@@ -1,98 +1,95 @@
 name: contract-risk-env
-version: "1.0.0"
-description: >
-  A structured contract risk analysis environment where an AI agent reads
-  contract data (as JSON) and must detect risky clauses, identify missing
-  protections and find conflicts between two contracts.
+type: environment
+runtime: docker
 
-author: Dipanshu Katole
+description: >
+  A real-world OpenEnv environment for AI contract risk analysis.
+  An agent reads structured contract data and must detect missing clauses,
+  flag risky values and identify conflicts between two contracts.
+  Simulates tasks that legal and compliance teams perform daily.
+
+app: api.app:app
+port: 7860
+
+tags:
+  - openenv
+  - contract-analysis
+  - legal
+  - risk-detection
+  - nlp
 
 tasks:
-  - id: easy_clause_detection
-    name: "Clause Detection"
+  - name: easy
+    description: Detect missing clauses in a simple NDA contract
     difficulty: easy
-    description: >
-      Given a simple NDA contract, identify which clauses are present
-      and which are missing.
-    contract_types: ["NDA"]
-    contract_ids: ["nda_001", "nda_002", "nda_003", "nda_004", "nda_005"]
     max_steps: 10
-    scoring: clause_f1
 
-  - id: medium_risk_flagging
-    name: "Risk Flagging"
+  - name: medium
+    description: Flag missing clauses AND risky values in a vendor agreement
     difficulty: medium
-    description: >
-      Given a vendor agreement, find missing clauses AND flag risky values
-      (e.g. liability cap too low, SLA uptime too low).
-    contract_types: ["VENDOR_AGREEMENT"]
-    contract_ids: ["vendor_001", "vendor_002", "vendor_003", "vendor_004", "vendor_005"]
     max_steps: 20
-    scoring: recall_minus_fp_penalty
 
-  - id: hard_conflict_detection
-    name: "Conflict Detection"
+  - name: hard
+    description: Detect conflicting fields between two contracts side by side
     difficulty: hard
-    description: >
-      Given two contracts side by side, find fields that contradict each other.
-      E.g. contract A caps liability at $1M but contract B has no cap at all.
-    contract_types: ["CONFLICT_DETECTION"]
-    contract_ids: ["conflict_001", "conflict_002", "conflict_003", "conflict_004", "conflict_005"]
     max_steps: 30
-    scoring: conflict_f1
 
 observation_space:
-  contract_id: str
-  contract_type: str
+  contract_id: string
+  contract_type: string
   clauses: dict
   values: dict
   step_number: int
   actions_taken: list
   remaining_budget: int
+  done: bool
+  reward: float
 
 action_space:
   action_type:
-    - flag_missing
-    - flag_risky
-    - approve
-    - submit_report
-  target_clause: str
+    type: string
+    enum: [flag_missing, flag_risky, approve, submit_report]
+  target_clause:
+    type: string
   severity:
-    - low
-    - medium
-    - high
-  reason: str
+    type: string
+    enum: [low, medium, high]
+    optional: true
+  reason:
+    type: string
 
-reward_structure:
+reward:
   correct_flag: 1.0
   correct_approve: 0.5
   wrong_flag: -0.3
-  missed_clause: -0.5
   repeat_action: -0.2
-  score_range: [0.0, 1.0]
+  missed_clause: -0.5
 
-thresholds:
-  liability_cap_usd_min: 10000
-  termination_notice_days_min: 7
-  confidentiality_years_min: 2
-  sla_uptime_percent_min: 99.0
-  payment_due_days_max: 60
-  penalty_per_day_usd_min: 100
+endpoints:
+  health:
+    method: GET
+    path: /health
 
-api:
-  base_url: "http://localhost:8000"
-  endpoints:
-    reset: "POST /reset"
-    step: "POST /step"
-    state: "GET /state"
-    tasks: "GET /tasks"
-    grader: "POST /grader"
-    baseline: "POST /baseline"
+  reset:
+    method: POST
+    path: /reset
 
-docker:
-  image: contract-risk-env
-  port: 8000
+  step:
+    method: POST
+    path: /step
 
-inference:
-  script: inference.py
-  model: gpt-4o-mini
+  state:
+    method: GET
+    path: /state
+
+  tasks:
+    method: GET
+    path: /tasks
+
+  grade:
+    method: POST
+    path: /grade
+    
+  close:
+    method: POST
+    path: /close
