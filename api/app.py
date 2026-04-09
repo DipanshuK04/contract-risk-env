@@ -31,7 +31,10 @@ env = ContractRiskEnvironment(DATA_PATH)
 class ResetRequest(BaseModel):
     task_id : Optional[str] = "easy"
     
-@app.post('/reset')
+@app.post('/')
+def welcome():
+    return {"name":"Contract Risk Analyzer for AI Agents" , "message":"Welcome to the Environment of Analyzing"}
+    
 @app.post('/reset')
 def reset(request:Optional[ResetRequest] = None):
     if request and request.task_id:
