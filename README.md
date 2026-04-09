@@ -23,7 +23,7 @@ set ENV_URL=http://localhost:7860 \
 set API_BASE_URL=https://router.huggingface.co/v1 \
 set MODEL_NAME=Qwen/Qwen2.5-72B-Instruct \ 
 set HF_TOKEN=your_hf_token_here \
-# or in powershell(windows use $env:API_KEY:"your_key")
+# or in powershell(windows use $env:API_KEY="your_key")
 ```
 
 ```bash
