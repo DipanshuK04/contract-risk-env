@@ -7,16 +7,16 @@ import sys
 import textwrap
 
 API_BASE_URL = os.environ["API_BASE_URL"]
-API_KEY      = os.environ["API_KEY"]
-MODEL_NAME   = os.environ["MODEL_NAME"]
+API_KEY = os.environ["API_KEY"]
+MODEL_NAME = os.environ["MODEL_NAME"]
 
-ENV_URL      = os.getenv("ENV_URL", "https://iamDipanshuK04-contract-env.hf.space")
+ENV_URL = os.getenv("ENV_URL", "https://iamDipanshuK04-contract-env.hf.space")
 
-BENCHMARK         = os.getenv("CONTRACT_RISK_BENCHMARK") or "contract-risk-env"
-MAX_STEPS         = 25
+BENCHMARK = os.getenv("CONTRACT_RISK_BENCHMARK") or "contract-risk-env"
+MAX_STEPS = 25
 SUCCESS_THRESHOLD = 0.5
-TEMPERATURE       = 0.0
-MAX_TOKENS        = 200
+TEMPERATURE = 0.0
+MAX_TOKENS = 200
 
 TASK_ALLOWED_ACTIONS = {
     "easy":   ["flag_missing", "approve", "submit_report"],
@@ -84,7 +84,7 @@ def build_user_prompt(
 
     history_block = "\n".join(history[-5:]) if history else "None"
     clauses = obs.get("clauses", {})
-    values  = obs.get("values",  {})
+    values = obs.get("values",  {})
 
     if task_id == "hard":
         a_vals = values.get("contract_a", {})
@@ -93,9 +93,9 @@ def build_user_prompt(
         b_clauses = clauses.get("contract_b", {})
 
         all_fields = set(a_vals.keys()) | set(b_vals.keys())
-
         conflicts_found = []
         comparison_lines = []
+        
         for field in sorted(all_fields):
             val_a = a_vals.get(field, "MISSING")
             val_b = b_vals.get(field, "MISSING")
@@ -151,7 +151,7 @@ def build_user_prompt(
 
     missing_clauses = [k for k, v in clauses.items() if v is False]
     present_clauses = [k for k, v in clauses.items() if v is True]
-    value_keys      = list(values.keys())
+    value_keys = list(values.keys())
 
     suspicious_values = {}
     for k, v in values.items():
@@ -171,12 +171,12 @@ def build_user_prompt(
 
     if task_id == "easy":
         remaining_missing = [c for c in missing_clauses if c not in already_acted]
-        remaining_risky   = []
-        should_submit     = len(remaining_missing) == 0
+        remaining_risky = []
+        should_submit = len(remaining_missing) == 0
     else:  # medium
         remaining_missing = [c for c in missing_clauses if c not in already_acted]
-        remaining_risky   = [v for v in value_keys      if v not in already_acted]
-        should_submit     = (len(remaining_missing) == 0 and len(remaining_risky) == 0)
+        remaining_risky= [v for v in value_keys      if v not in already_acted]
+        should_submit = (len(remaining_missing) == 0 and len(remaining_risky) == 0)
 
     return textwrap.dedent(f"""
         TASK: {task_id}
@@ -231,10 +231,10 @@ def get_llm_action(
 
     if obs.get("remaining_budget", 0) <= 0:
         return {
-            "action_type":   "submit_report",
+            "action_type": "submit_report",
             "target_clause": "none",
-            "severity":      None,
-            "reason":        "budget exhausted",
+            "severity": None,
+            "reason":"budget exhausted",
         }
 
     user_prompt = build_user_prompt(obs, task_id, step, last_reward, history)
@@ -255,18 +255,18 @@ def get_llm_action(
             action["severity"] = None
 
         return {
-            "action_type":   action.get("action_type",  "submit_report"),
+            "action_type": action.get("action_type",  "submit_report"),
             "target_clause": action.get("target_clause", "none"),
-            "severity":      action.get("severity",None),
-            "reason":        action.get("reason",""),
+            "severity": action.get("severity",None),
+            "reason": action.get("reason",""),
         }
 
     except Exception as e:
         return {
-            "action_type":   "submit_report",
+            "action_type": "submit_report",
             "target_clause": "none",
-            "severity":      None,
-            "reason":        f"llm_error: {str(e)}",
+            "severity": None,
+            "reason": f"llm_error: {str(e)}",
         }
 
 
@@ -319,7 +319,6 @@ async def run_task(task_id: str) -> float:
     success = False
 
     log_start(task=task_id, env=BENCHMARK, model=MODEL_NAME)
-
     try:
         reset_resp = requests.post(
             f"{ENV_URL}/reset",
@@ -340,7 +339,7 @@ async def run_task(task_id: str) -> float:
                     raise ValueError("Invalid LLM action format")
                 action_str = f"{action['action_type']}('{action['target_clause']}')"
             except Exception:
-                action     = {"action_type": "submit_report", "target_clause": "none"}
+                action = {"action_type": "submit_report", "target_clause": "none"}
                 action_str = "submit_report('none')"
 
             try:
@@ -352,7 +351,7 @@ async def run_task(task_id: str) -> float:
                 step_resp.raise_for_status()
                 result = step_resp.json()
                 obs = result["observation"]
-                reward    = float(result["reward"])
+                reward  = float(result["reward"])
                 done = bool(result["done"])
                 error_msg = None
             except Exception as e:
@@ -377,7 +376,7 @@ async def run_task(task_id: str) -> float:
         except Exception:
             score = 0.01
 
-        score   = min(max(score, 0.01), 0.99)
+        score = min(max(score, 0.01), 0.99)
         success = score >= SUCCESS_THRESHOLD
 
     except Exception:
