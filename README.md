@@ -1,12 +1,3 @@
----
-title: Contract Risk Environment
-emoji: 🤖
-colorFrom: blue
-colorTo: purple
-sdk: docker
-app_port: 7860
-pinned: false
----
 # Contract Risk Analysis Environment
 
 An OpenEnv-compatible environment where an AI agent analyzes contracts
