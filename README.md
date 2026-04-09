@@ -114,12 +114,12 @@ The agent must identify problems and submit a final report.
 
 | Task   | Score |
 |--------|-------|
-| Easy   | 1.000 |
-| Medium | 1.000 |
-| Hard   | 1.000 |
-| Avg    | 1.000 |
+| Easy   | 0.99  |
+| Medium | 0.99  |
+| Hard   | 0.95  |
+| Avg    | 0.97  |
 
-Model: `meta-llama/Llama-3.3-70B-Instruct`
+Model: `meta-llama/Llama-3.3-72B-Instruct`
 
 ## Setup
 ```bash
