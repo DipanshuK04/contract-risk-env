@@ -29,13 +29,17 @@ app = FastAPI(
 env = ContractRiskEnvironment(DATA_PATH)
 
 class ResetRequest(BaseModel):
-    task_id : str = Field(default="easy",description = "Difficulty level of task")
-
+    task_id : Optional[str] = "easy"
+    
 @app.post('/reset')
-def reset(request:ResetRequest):
-    if request.task_id not in TASK_CONFIG:
-        raise HTTPException(status_code=400, detail=f"Invalid task_id. Choose from: {list(TASK_CONFIG.keys())}")
-    obs = env.reset(task_id=request.task_id)
+@app.post('/reset')
+def reset(request:Optional[ResetRequest] = None):
+    if request and request.task_id:
+        task_id = request.task_id
+    else:
+        task_id = "easy" 
+
+    obs = env.reset(task_id)
     return obs.dict()
 
 class StepRequest(BaseModel):
